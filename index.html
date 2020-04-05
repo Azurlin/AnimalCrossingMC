@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>动森配方计算器</title>
+  <link rel="stylesheet" href="docsupport/style.css"> 
+  <link rel="stylesheet" href="css/chosen.min.css">
+  <!---->
+  <style>
+      .box{
+        background-color: #FFFFCC;
+        height: 1000px;
+      }
+      table.ittable tr.ittr {
+              background-color:#99CCCC;
+              font-weight: bolder;
+          }
+      table.ittable tr{
+          background-color: #FFFFCC;
+          border:1px solid #CCFFCC ;
+      }
+      table.ittable tr.ittr td.ittd {
+          width: 200px;
+          text-align: center;
+          border:1px solid #CCFFCC ;
+      }
+      table.ittable tr.ittr td.ittd2{
+        width: 100px;
+        border:1px solid #CCFFCC;
+      }
+      #Num{
+        text-align: center;
+        width: 100px;
+      }
+      .show{
+        border:3px solid #99CCCC;margin-right: 110px;
+        background-color: #FFFFCC;
+      }
+  </style>
+</head>
+<body>
+  <form>
+    <div id="container" class="box" >
+     <div></br></div>
+      <div id="content" style=" background-color:#CCFFCC;border: 10px solid #99CCCC;">
+        <header style="text-align: center;">
+          <h1 style="font-size: 25px;font-weight: bolder;">集合啦！动物森友会--配方计算器</h1>
+        </header>
+      </br>
+      <div class="side-by-side clearfix">
+        <div>
+          <em>在这里选择配方或输入配方关键字</em>
+          <select data-placeholder="选择DIY配方..." class="my-chosen-select" id="sel" multiple>
+            <option value=""></option>
+          </select>
+          </br>
+          </br>
+          <table>
+            <tr>
+              <td><button class="addBtn" type="button">添加</button></td>
+              <td><button class="calBtn" type="button">计算</button></td>
+              <td><button class="reBtn" type="button">重置</button></td>
+            </tr>
+          </table>
+          </br>
+          <div class="show">
+            <em>所需要材料</em>
+          </div>  
+        </div>
+        <div style="text-align: center;">
+          <table class="ittable" id="t1">
+            <tr class="ittr">
+              <td class="ittd">物品</td>
+              <td class="ittd2">数量</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </form>
+  <script src="docsupport/jquery-3.2.1.min.js" type="text/javascript"></script>
+  <script src="js/chosen.jquery.js" type="text/javascript"></script>
+  <script type="text/javascript">$(".my-chosen-select").chosen({disable_search:false, search_contains:true});</script>
+  <script src="js/acmcmin.js"></script>
+</body>
+</html>
