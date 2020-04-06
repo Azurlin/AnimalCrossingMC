@@ -1,7 +1,6 @@
 /*
 @Azurlin 2020.4.5
 */
-
 //读取json
 window.onload = function(){
 	$(function(){
@@ -22,26 +21,48 @@ window.onload = function(){
 var item=[];//选中的物品
 var addBtn = document.querySelector('.addBtn');
 var calBtn = document.querySelector('.calBtn');
-var reBtn = document.querySelector('.reBtn')
+var reBtn = document.querySelector('.reBtn');
+var delBtn = document.querySelector('.delBtn');
+var adjIndex = 0;
 addBtn.onclick =function () {//添加 按钮监听
 	let Table = document.getElementById('t1');
 	//获取选中的项目
-	let selectedElem = document.querySelector('select').options;//获取下拉列表
+	let selectedElem = $('.my-chosen-select').val();
 	for(let i=0;i<selectedElem.length;i++){
+		adjIndex++;
 		let td = createTd();//创建td tr
 		let tdInp = createTd();
 		let input = createInput();
+		input.className = adjIndex;
 		let tr = createTr();
-		if(selectedElem[i].selected){//判断是否选中
-			if(!isRepeat(item,selectedElem[i].innerHTML)&&selectedElem[i].innerHTML!=''){ //判断重复
-				td.innerHTML = selectedElem[i].innerHTML;
-				item.push(td.innerHTML);
-				tdInp.append(input);
-				tr.append(td);
-				tr.append(tdInp);
-				Table.append(tr);
-			}
+		let add = createDelTd(adjIndex);
+		let sub = createDelTd(adjIndex);
+		add.innerHTML='+';
+		sub.innerHTML='-';
+		add.className='add';
+		sub.className='sub';
+		add.onclick = function(){
+			let temp= getInput(add.id);
+			temp[0].value = Number(temp[0].value)+1;
 		}
+		sub.onclick = function(){
+			let temp= getInput(add.id);
+			if(Number(temp[0].value)>0)
+				temp[0].value = Number(temp[0].value)-1; 
+		}
+		let adjTd = createTd();
+		if(!isRepeat(item,selectedElem[i])&&selectedElem[i]!=''){ //判断重复
+			td.innerHTML = selectedElem[i];
+			item.push(td.innerHTML);
+			tdInp.append(input);
+			tr.append(td);
+			tr.append(tdInp);
+			adjTd.append(add);
+			adjTd.append(sub);
+			tr.append(adjTd);
+			Table.append(tr);
+		}
+		
 	}
 	$("#sel").val("").trigger("chosen:updated");//重置搜索框
 }
@@ -67,6 +88,12 @@ function createInput(){
 	input.value=1;
 	return input;
 }
+function createDelTd(index){
+	let adj = document.createElement('button');
+	adj.type='button';
+	adj.id = index;
+	return adj;
+}
 function createTd(){
 	return document.createElement('td');
 }
@@ -90,18 +117,18 @@ function calculate(){
     for(var i=0;i<=length;i++){
         var itName = item[i];//物品名
 		for(var key in itemAll[itName]){//itemAll[itName]材料 key：材料名
-			if(isInteger(Number(objInput[i].value))){
-				var dic = itemAll[itName][key]*Number(objInput[i].value);//材料数量 *物品个数  
-				if(isRepeat(itArr,key)){//判重 itArr 存材料名 sumArr 所需数量
-					sumArr[itArr.indexOf(key)]+=dic;                
+			let number = Number(objInput[i].value);
+			if(isInteger(number)&&number>0){
+				if(number!=0){
+					var dic = itemAll[itName][key]*number;//材料数量 *物品个数  
+					if(isRepeat(itArr,key)){//判重 itArr 存材料名 sumArr 所需数量
+						sumArr[itArr.indexOf(key)]+=dic;                
+					}
+					else{
+						itArr.push(key);
+						sumArr.push(dic);
+					}
 				}
-				else{
-					itArr.push(key);
-					sumArr.push(dic);
-				}
-			}
-			else{
-				alert("输入正确的数量哦~")
 			}
         }
     }
@@ -117,7 +144,11 @@ function show(item,sum){
 	let showContent="";
 	//let select = document.querySelector('select');
 	for(let l =0;l<item.length;l++)
-		showContent +=item[l]+":"+sum[l]+"<br/>";
+		if(sum[l]!=0)
+			showContent +=item[l]+":"+sum[l]+"<br/>";
 	showDiv.innerHTML = showContent;
 }
-
+function getInput(index){
+	var objInput = document.getElementById("t1").getElementsByClassName(index);
+	return objInput;
+}
