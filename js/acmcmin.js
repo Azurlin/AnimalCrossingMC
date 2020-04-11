@@ -3,7 +3,6 @@
 */
 //读取json
 window.onload = function(){
-	$(function(){
 		$.ajax({
 			type: "GET",
 			dataType: 'json',
@@ -12,7 +11,6 @@ window.onload = function(){
 				resInit(result);
 			}
 			});
-		});
 	function resInit(result){
 		itemAll = result[0];
 		initData();
@@ -119,15 +117,13 @@ function calculate(){
 		for(var key in itemAll[itName]){//itemAll[itName]材料 key：材料名
 			let number = Number(objInput[i].value);
 			if(isInteger(number)&&number>0){
-				if(number!=0){
-					var dic = itemAll[itName][key]*number;//材料数量 *物品个数  
-					if(isRepeat(itArr,key)){//判重 itArr 存材料名 sumArr 所需数量
-						sumArr[itArr.indexOf(key)]+=dic;                
-					}
-					else{
-						itArr.push(key);
-						sumArr.push(dic);
-					}
+				var dic = itemAll[itName][key]*number;//材料数量 *物品个数  
+				if(isRepeat(itArr,key)){//判重 itArr 存材料名 sumArr 所需数量
+					sumArr[itArr.indexOf(key)]+=dic;                
+				}
+				else{
+					itArr.push(key);
+					sumArr.push(dic);
 				}
 			}
         }
