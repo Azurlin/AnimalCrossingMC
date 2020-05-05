@@ -11,21 +11,21 @@
 <body>
     
     <div class="top">
-        集合啦！动物森友会----配方计算器
+        集合啦！动物森友会——配方计算器
     </div>
     <table class="mintable" >
         <tr>
             <td style="width: 300px;">
                 <div id="divt" style="margin-left:15px;width: 300px;height: 600px;">
                     <div>
-                        <div class="div-title" ><i class="icon icon-leaf"></i> 在这里输入配方关键字</div>
-                        
+                        <div class="div-title" ><i class="icon icon-leaf"></i> 在这里输入配方关键字</div> 
                         <div class="input-control search-box has-icon-left has-icon-right search-example" id="searchboxExample">
                             <input id="searchInputExample" autofocus="autofocus" type="search" class="form-control search-input" placeholder="搜索">                              <label for="inputSearchExample3" class="input-control-icon-left search-icon"><i class="icon icon-search"></i></label>
                         </div>
                     </div>
                     <hr>
                     <div style="margin-left: 5%;margin-top: 5%;">
+
                         <nav class="menu" data-ride="menu" style="width: 240px">
                             <ul id="treeMenu" class="tree tree-menu" data-ride="tree">
                             </ul>
@@ -34,16 +34,15 @@
                 </div>
             </td>
             <td>
-                <div id="divt" style=" margin-left: 1px; width: 310px;height:600px;">
+                <div id="divt" style=" margin-left: 1px; width: 340px;height:600px;">
                     <div class="div-list"><i class="icon icon-align-justify"></i> 物品清单</div>
-                    <hr>
+                    <hr>  
                     <div class="scrollbar-hover" id="div-sc">
-                        <table  class="table table-hover" id="show" style="font-size: 15px;" >
-                            <tbody id="tbody1">
+                        <table  id="show-search-table" class="showsearch-tb" >
+                            <tbody>
                             </tbody>
                         </table>
-                    </div>
-
+                    </div>   
                 </div>
             </td>
             <td>
@@ -67,18 +66,18 @@
                         </table>
                     </div>
                      <hr>
-                     <div style="text-align: center;">
+                    <div style="text-align: center;">
                         <button id="showbtn" type="button" class="btn" data-position="center" data-toggle="modal" data-target="#myModal">材料一览</button>
                         <button type="button" id="rebtn" class="btn">重置</button>
-                     </div>
+                    </div>
                     <!-- 对话框HTML -->
                     <div class="modal fade" id="myModal">
-                    <div class="modal-dialog">
-                    <div class="modal-content" style="font-size: 15px; text-align: center;" id="showpanel">
-                        还没有数据哦~
+                        <div class="modal-dialog">
+                            <div class="modal-content" style="font-size: 15px; text-align: center;" id="showpanel">
+                                还没有数据哦~
+                            </div>
+                        </div>
                     </div>
-                    </div>
-                </div>
                 </div>
             </td>
         </tr>
